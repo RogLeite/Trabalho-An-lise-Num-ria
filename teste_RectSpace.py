@@ -67,24 +67,24 @@ def testeRectSpace(mode="empty",elements = [Point2D((300.0,225.0))],origin = (20
 	print("\t"+"Height = "+str(r1.Height))
 	
 
-
-print("Hello World!")
-#=========================================================
-std_Coord = (100.0,50.0)
-testePoint2D()
-testePoint2D("full")
-testePoint2D("full",std_Coord)
-#=========================================================
-std_origin = (20.0,15.0)
-std_size = (200.0,150.0)
-#Ultimo ponto não deve entrar
-std_elements = [Point2D(std_origin),
-	Point2D(((std_origin[0]+std_size[0])/2,(std_origin[1]+std_size[1])/2)),
-	Point2D(std_size),
-	Point2D(((std_origin[0]+std_size[0]),(std_origin[1]+std_size[1]))),
-	Point2D((std_origin[0]+std_size[0]+1,std_origin[1]+std_size[1]+1)),
-	Point2D((std_origin[0]+std_size[0]+10,std_origin[1]+std_size[1]+10))
-]
-testeRectSpace()
-testeRectSpace("full")
-testeRectSpace("full",std_elements,std_origin,std_size)
+if __name__ == "__main__":
+	print("Hello World!")
+	#=========================================================
+	std_Coord = (100.0,50.0)
+	testePoint2D()
+	testePoint2D("full")
+	testePoint2D("full",std_Coord)
+	#=========================================================
+	std_origin = (20.0,15.0)
+	std_size = (200.0,150.0)
+	#Ultimo ponto não deve entrar
+	std_elements = [Point2D(std_origin),
+		Point2D(((std_origin[0]+std_size[0])/2,(std_origin[1]+std_size[1])/2)),
+		Point2D(std_size),
+		Point2D(((std_origin[0]+std_size[0]),(std_origin[1]+std_size[1]))),
+		Point2D((std_origin[0]+std_size[0]+1,std_origin[1]+std_size[1]+1)),
+		Point2D((std_origin[0]+std_size[0]+10,std_origin[1]+std_size[1]+10))
+	]
+	testeRectSpace()
+	testeRectSpace("full")
+	testeRectSpace("full",std_elements,std_origin,std_size)

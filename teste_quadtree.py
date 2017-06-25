@@ -1,3 +1,5 @@
+
+
 class Node():
 	ROOT = 0
 	BRANCH = 1
@@ -97,18 +99,12 @@ class QuadTree():
 				self.traverse(child) # << recursion
 
 #===========================================================
-class RectSpace():
 	
-	def __init__(self,elements=[],size={"Widht":800.0,"Height":600.0},origin=Point2D()):
-		self.elements = elements
-		self.size = size
-	
-class Point2D():
-	def __init__(self, coordinates={"x":0.0,"y":0.0}):
-		self.coordinates = coordinates
-		
-#===========================================================
-print ("Hello World!")
-qt = QuadTree(Node(None,(0,0,1,1)),0.1)
-print(Node.minsize)
-print(qt.maxdepth,qt.leaves)
+#===========================================================.
+if __name__ == "__main__":
+	import teste_RectSpace as RS
+	print ("Hello World!")
+	qt = QuadTree(Node(None,(0,0,1,1)),0.1)
+	print(Node.minsize)
+	print(qt.maxdepth,qt.leaves)
+	RS.testeRectSpace()
