@@ -1,7 +1,3 @@
-# quadtree.py
-# Implements a Node and QuadTree class that can be used as 
-# base classes for more sophisticated implementations.
-# Malcolm Kesson Dec 19 2012
 class Node():
 	ROOT = 0
 	BRANCH = 1
@@ -99,52 +95,9 @@ class QuadTree():
 		for child in node.children:
 			if child != None:
 				self.traverse(child) # << recursion
-#_______________________________________________________
-# Returns a string containing the rib statement for a
-# four sided polygon positioned at height "y".
-def RiPolygon(rect, y):	
-	x0,z0,x1,z1 = rect
-	verts = []
-	verts.append(' %1.3f %1.3f %1.3f' % (x0,y,z0))
-	verts.append(' %1.3f %1.3f %1.3f' % (x0,y,z1))
-	verts.append(' %1.3f %1.3f %1.3f' % (x1,y,z1))
-	verts.append(' %1.3f %1.3f %1.3f' % (x1,y,z0))
-	rib =  '\tPolygon "P" ['
-	rib += ''.join(verts)
-	rib += ']\n'
-	return rib
-		
-if __name__=="__main__":
-	rootrect = [-2.0, -2.0, 2.0, 2.0]
-	resolution = 0.05
-	rootnode = Node(None, rootrect)
-	tree = QuadTree(rootnode, resolution)
-	
-	#rect = [-2.0, -2.0, 2.0, 2.0]
-	#tree = QuadTree(rect, 0.05)
-	print("len(Quadtree.leaves) = "+str(len(QuadTree.leaves)))
-	print("Quadtree.maxdepth = "+str(QuadTree.maxdepth))
-	ribspath = 'C:/Users/rodri/Documents/Rodrigo/T1 Análise numérica/source/quadtree'
-	count = 1
-	rib = ''
-	print(QuadTree.leaves)
-	for node in QuadTree.leaves:
-		fname = 'rect.%0*d.rib' % (4, count)
-		print(fname)
-		path = os.path.join(ribspath, fname)
-		print(path)
-		f = open(path,'w')
-		height = float(node.depth)/QuadTree.maxdepth
-		rib += RiPolygon(node.rect, height * 0.25)
-		f.write(rib)
-		f.close()
-		count += 1
-	print('---------')
 
 
-
-
-
-
-
-
+print ("Hello World!")
+qt = QuadTree(Node(None,(0,0,1,1)),0.1)
+print(Node.minsize)
+print(qt.maxdepth,qt.leaves)
