@@ -96,7 +96,15 @@ class QuadTree():
 			if child != None:
 				self.traverse(child) # << recursion
 
-
+#===========================================================
+class RectSpace():
+	
+	def __init__(self,elements=None,size={"Widht":800,"Height":600}):
+		self.elements = elements
+		self.size = size
+	
+	
+#===========================================================
 print ("Hello World!")
 qt = QuadTree(Node(None,(0,0,1,1)),0.1)
 print(Node.minsize)
