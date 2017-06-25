@@ -7,7 +7,7 @@ class Node():
 	# In the case of a root node "parent" will be None. The
 	# "rect" lists the minx,minz,maxx,maxz of the rectangle
 	# represented by the node.
-	def __init__(self, parent, rect, quadrant):
+	def __init__(self, parent, rect, quadrant = []):
 		self.parent = parent
 		self.children = [None,None,None,None]
 		if parent == None:
