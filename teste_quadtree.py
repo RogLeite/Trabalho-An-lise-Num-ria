@@ -7,15 +7,15 @@ class Node():
 	# In the case of a root node "parent" will be None. The
 	# "rect" lists the minx,minz,maxx,maxz of the rectangle
 	# represented by the node.
-	def __init__(self, parent, rect, quadrant = []):
+	def __init__(self, parent, rect, quadrant = ()):
 		self.parent = parent
 		self.children = [None,None,None,None]
 		if parent == None:
 			self.depth = 0
-			self.mor_code = []
+			self.mor_code = ()
 		else:
 			self.depth = parent.depth + 1
-			self.mor_code = parent.mor_code.append(quadrant)
+			self.mor_code = parent.mor_code+quadrant
 		self.rect = rect
 		x0,z0,x1,z1 = rect
 		if self.parent == None:
