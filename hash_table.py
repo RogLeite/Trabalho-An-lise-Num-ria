@@ -27,15 +27,42 @@ class HashTable():
 		for n in range(size):
 			#print("==="+str(n+1)+"===")
 			#self.fn(n+1,size)
+			#==================================
+			#Filling the table with Stacks
 			self.table[self.fn(n+1,size)+self.factorby2(n)] = []
+			#====================================
 	def getIndexes(self):
 		return self.table.keys()
+	def criteria(self,key, id):
+		keylen = len(key)
+		idlen = len(id)
+		sublen = idlen-keylen
+		return (id[sublen::]==(key))
+
+	def insert(self,elems, idfind):
+		for elem in elems:
+			id = idfind(elem)
+			keys = self.table.keys()
+			for key in keys:
+				if self.criteria(key, id):
+					self.table[key].append(elem)
 	
 if __name__ == "__main__":
+
+	"""
+	def criteriaTest(keys,ids):
+		for id in ids:
+			for key in keys:
+				print("id : ",id)
+				print("/==================")
+				print("\tkey : ",key)
+				print("\tcriteria : ",HashTable.criteria(key, id))
+				print("==================/\n\n")"""
 	table = HashTable()
-	print(table.getIndexes())
-	elem0 = (0,0)
-	elem1 = (0,1)
-	elem2 = (1,0)
-	elem3 = (1,1)
-	elem4 = (1,1)
+	inds = table.getIndexes()
+	print(inds)
+	elems = [(0,0,0),(1,0,1),(1,0),(0,1,1),(1,1)]
+	#criteriaTest(table.getIndexes(),elems)
+	table.insert(elems,lambda x: x)
+	for ind in inds:
+		print(ind,": ",table.table[ind])
