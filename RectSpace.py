@@ -50,27 +50,28 @@ class RectSpace():
 		sub = []
 		subwidht = self.size[0]/2
 		subheight = self.size[1]/2
-		origincopy = self.origin.deepcopy
+		origincopy = self.origin.deepcopy()
 		subrect = RectSpace(origincopy,(subwidht,subheight))
-		subrect.receivePoints
+		subrect.receivePoints(self.elements)
 		sub.append(subrect.deepcopy())
 		
 		subrect = RectSpace((origincopy.getCoord()[0]+subwidht,origincopy.getCoord()[1]),(subwidht,subheight))
-		subrect.receivePoints
+		subrect.receivePoints(self.elements)
 		sub.append(subrect.deepcopy())
 		
 		subrect = RectSpace((origincopy.getCoord()[0],origincopy.getCoord()[1])+subwidht,(subwidht,subheight))
-		subrect.receivePoints
+		subrect.receivePoints(self.elements)
 		sub.append(subrect.deepcopy())
 		
 		subrect = RectSpace((origincopy.getCoord()[0]+subwidht,origincopy.getCoord()[1]+subwidht),(subwidht,subheight))
-		subrect.receivePoints
+		subrect.receivePoints(self.elements)
 		sub.append(subrect.deepcopy())
 		
 		return sub
 	
 	def spans_feature(self):
 		return not(self.elements==[])
+		
 	
 
 def testePoint2D(mode="empty",coordinates = (0.0,0.0)):
