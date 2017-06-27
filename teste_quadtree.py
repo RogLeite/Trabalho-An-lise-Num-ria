@@ -96,7 +96,7 @@ class QuadTree():
 	# nodes are appended to the list of leaves.
 	def traverse(self, node):
 		#QuadTree.allnodes.append(node)
-		self.hash_table.insert(node,node.mor_code)
+		self.hash_table.insert(node,lambda x: x.mor_code)
 		if node.type == Node.LEAF:
 			#QuadTree.leaves.append(node)
 			if node.depth > QuadTree.maxdepth:
@@ -109,6 +109,7 @@ class QuadTree():
 	def pointToLeaf(self,point):
 		x,y = point.getCoord()
 		hash_code = (y%2,x%2)
+		
 #===========================================================
 	
 #===========================================================.
