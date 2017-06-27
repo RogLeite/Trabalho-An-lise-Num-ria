@@ -39,9 +39,8 @@ class HashTable():
 		sublen = idlen-keylen
 		return (id[sublen::]==(key))
 
-	def insert(self,elems, idfind):
+	def insert(self,elems, id):
 		for elem in elems:
-			id = idfind(elem)
 			keys = self.table.keys()
 			for key in keys:
 				if self.criteria(key, id):

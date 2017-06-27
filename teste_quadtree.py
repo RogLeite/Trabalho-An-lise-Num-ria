@@ -1,5 +1,5 @@
-
-
+from RectSpace import Point2D
+import hash_table as ht
 class Node():
 	ROOT = 0
 	BRANCH = 1
@@ -70,6 +70,7 @@ class QuadTree():
 	#_______________________________________________________
 	def __init__(self, rootnode, minrect):
 		Node.minsize = minrect
+		hash_table = hs.HashTable()
 		rootnode.subdivide() # constructs the network of nodes
 		self.prune(rootnode)
 		self.traverse(rootnode)
@@ -94,15 +95,20 @@ class QuadTree():
 	# Appends all nodes to a "generic" list, but only LEAF 
 	# nodes are appended to the list of leaves.
 	def traverse(self, node):
-		QuadTree.allnodes.append(node)
+		#QuadTree.allnodes.append(node)
+		self.hash_table.insert(node,node.mor_code)
 		if node.type == Node.LEAF:
-			QuadTree.leaves.append(node)
+			#QuadTree.leaves.append(node)
 			if node.depth > QuadTree.maxdepth:
 				QuadTree.maxdepth = node.depth
 		for child in node.children:
 			if child != None:
 				self.traverse(child) # << recursion
-
+	#_______________________________________________________
+	#Point to leaf
+	def pointToLeaf(self,point):
+		x,y = point.getCoord()
+		hash_code = (y%2,x%2)
 #===========================================================
 	
 #===========================================================.
