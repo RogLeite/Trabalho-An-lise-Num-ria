@@ -54,8 +54,7 @@ class HashTable():
 		for i in range(len(list)):
 			if len(list[i]) < len(id):
 				return i
-		else:
-			return len(list)
+		return len(list)
 		
 	def findLeaf(self, hash_code, id):
 		for node in self.table[hash_code]:
@@ -63,8 +62,7 @@ class HashTable():
 			subid = id[len(id)-nodeidlen::]
 			if(cmp(subid,node.mor_code)==0):
 				return node
-		else:
-			return None
+		return None
 if __name__ == "__main__":
 
 	"""
