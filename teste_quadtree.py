@@ -108,15 +108,35 @@ class QuadTree():
 	#Point to leaf
 	def pointToLeaf(self,point):
 		x,y = point.getCoord()
+		x0,y0,x1,y1 = self.rect
+		assert(x>=0 and x<=x1 and y>=y0 and y<=y1,"Given point not in this rect")
 		hash_code = (y%2,x%2)
+		xt = hs.HashTable.factorby2(x)
+		yt = hs.HashTable.factorby2(y)
+		dif = len(xt)-len(yt)
+		id = ()
+		if dif<0:
+			for i in range(-dif):
+				xt = (0,)+xt
+		elif dif>0:
+			for i in range(dif):
+				yt = (0,)+yt
+		assert(len(xt)-len(yt)==0,"=========FALT=========\nin QuadTree.pointToLeaf()\n\t, len(xt)-len(yt) != 0")
 		
+		for i in range(len(xt)):
+			xti = xt[i]
+			yti = yt[i]
+			id = di+(yti,xti)
+		node = self.hash_table.findLeaf(hash_code,id)
+		assert(node==None,"Could not find suitable node for given point")
+		return node
 #===========================================================
 	
 #===========================================================.
 if __name__ == "__main__":
-	import teste_RectSpace as RS
+	
 	print ("Hello World!")
 	qt = QuadTree(Node(None,(0,0,1,1)),0.1)
 	print(Node.minsize)
 	print(qt.maxdepth,qt.leaves)
-	RS.testeRectSpace()
+	
