@@ -42,11 +42,11 @@ class RectSpace():
 		
 	#==================================
 	def __init__(self,elements=[],origin=Point2D((0.0,0.0)),size=(800.0,600.0)):
-		print("Origin = ",origin)
-		print("origin getCoord() = ",origin.getCoord())
+		# print("Origin = ",origin)
+		# print("origin getCoord() = ",origin.getCoord())
 		self.origin = origin
-		print("self.Origin = ",self.origin)
-		print("self.origin getCoord() = ",self.origin.getCoord())
+		# print("self.Origin = ",self.origin)
+		# print("self.origin getCoord() = ",self.origin.getCoord())
 		
 		self.Width = size[0]
 		self.Height = size[1]
@@ -65,6 +65,18 @@ class RectSpace():
 				return True
 		return False
 		
+	def subRect(elements, origin,subwidht,subheight):
+		elemcopy = deepcopy(elements)
+		print("=====IN subRect=====\n")
+		print("Origin = ",origin)
+		print("origin getCoord() = ",origin.getCoord())
+		origincopy = deepcopy(origin)
+		print("origincopy = ",origincopy)
+		print("origincopy.getCoord() = ",origincopy.getCoord())
+		print("==============================")
+		subrect = RectSpace(elemcopy,origincopy,(subwidht,subheight))
+		return subrect
+		
 	def subdivide(self):
 		sub = []
 		subwidht = self.Width/2
@@ -72,26 +84,25 @@ class RectSpace():
 		print("=====IN subdivide=====\n")
 		print("self.Origin = ",self.origin)
 		print("self.origin getCoord() = ",self.origin.getCoord())
-		origincopy = deepcopy(self.origin)
-		print("origincopy = ",origincopy)
-		print("origincopy.getCoord() = ",origincopy.getCoord())
-		print("==============================")
-		elemcopy = deepcopy(self.elements)
 		
-		if self.isinThisRange(elemcopy,origincopy,(subwidht,subheight)):
-			subrect = RectSpace(elemcopy,origincopy,(subwidht,subheight))
+		# print("origincopy = ",origincopy)
+		# print("origincopy.getCoord() = ",origincopy.getCoord())
+		# print("==============================")
+		
+		if self.isinThisRange(self.elements,self.origin,(subwidht,subheight)):
+			subrect = self.subRect(self.elements,self.origin,(subwidht,subheight))
 			sub.append(deepcopy(subrect))
 		
-		if self.isinThisRange(elemcopy,Point2D((origincopy.getCoord()[0]+subwidht,origincopy.getCoord()[1])),(subwidht,subheight)):
-			subrect = RectSpace(elemcopy,Point2D((origincopy.getCoord()[0]+subwidht,origincopy.getCoord()[1])),(subwidht,subheight))
+		if self.isinThisRange(self.elements,Point2D((self.origin.getCoord()[0]+subwidht,self.origin.getCoord()[1])),(subwidht,subheight)):
+			subrect = self.subRect(self.elements,Point2D((self.origin.getCoord()[0]+subwidht,self.origin.getCoord()[1])),(subwidht,subheight))
 			sub.append(deepcopy(subrect))
 		
-		if self.isinThisRange(elemcopy,Point2D((origincopy.getCoord()[0],origincopy.getCoord()[1]+subheight)),(subwidht,subheight)):
-			subrect = RectSpace(elemcopy,Point2D((origincopy.getCoord()[0],origincopy.getCoord()[1]+subheight)),(subwidht,subheight))
+		if self.isinThisRange(self.elements,Point2D((self.origin.getCoord()[0],self.origin.getCoord()[1]+subheight)),(subwidht,subheight)):
+			subrect = self.subRect(self.elements,Point2D((self.origin.getCoord()[0],self.origin.getCoord()[1]+subheight)),(subwidht,subheight))
 			sub.append(deepcopy(subrect))
 		
-		if self.isinThisRange(elemcopy,Point2D((origincopy.getCoord()[0]+subwidht,origincopy.getCoord()[1]+subheight)),(subwidht,subheight)):
-			subrect = RectSpace(elemcopy,Point2D((origincopy.getCoord()[0]+subwidht,origincopy.getCoord()[1]+subheight)),(subwidht,subheight))
+		if self.isinThisRange(self.elements,Point2D((self.origin.getCoord()[0]+subwidht,self.origin.getCoord()[1]+subheight)),(subwidht,subheight)):
+			subrect = self.subRect(self.elements,Point2D((self.origin.getCoord()[0]+subwidht,self.origin.getCoord()[1]+subheight)),(subwidht,subheight))
 			sub.append(deepcopy(subrect))
 		
 		return sub

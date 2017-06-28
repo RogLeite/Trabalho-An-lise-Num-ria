@@ -36,23 +36,35 @@ if __name__ == "__main__":
 		
 		if command==1:
 			rect = iniciaRetangulo()
-			return iniciaQuadTree(rect)
-		elif command==2:
-			print("Entao"),
-			dimensoes = perguntaRect()
-			rect = iniciaRetangulo(dimensoes)
-			return iniciaQuadTree(rect)
+			return iniciaQuadTree(rect),rect.elements
+		#Isso está comentado pois não implementei plt.axis() para um tamanho dinâmico
+		# elif command==2:
+			# print("Entao"),
+			# dimensoes = perguntaRect()
+			# rect = iniciaRetangulo(dimensoes)
+			# return iniciaQuadTree(rect),rect.elements
 		elif command==99:
 			input("Ate mais!\naperte \"enter\" para terminar")
 			sys.exit()
 		else:
 			print("Opção não existe!")
-			mainMenu()
+			return mainMenu()
 			
 	# import plotly
-	import matplotlib.pyplot
-	quadTree = mainMenu()
+	import matplotlib.pyplot as plt
+	# plt.plot([1,2,3,4])
+	# plt.ylabel('some numbers')
+	# plt.show()
+	
+	quadTree,points = mainMenu()
 	if quadTree==None:
 		input("Não foi gerada quadtree\npressione \"enter\" para terminar")
 		sys.exit()
+	if points == None or points == []:
+		intput("Não foi gerada lista de pontos\npressione \"enter\" para terminar")
+		sys.exit()
+	for point in points :
+		plt.plot([point.getCoord()[0]],[point.getCoord()[1]],'b.')
+	plt.axis([0,800,0,600])
+	plt.show()
 	
