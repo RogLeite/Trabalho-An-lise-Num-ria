@@ -24,7 +24,8 @@ if __name__ == "__main__":
 		rootnode = qt.Node(None,rect)
 		minsize = int(input("Qual o tamanho da menor largura? "))
 		quadTree = qt.QuadTree(rootnode, minsize)
-		erropraeumeachardepois print("\nIn iniciaQuadTree(); quadtree==None :",quadtree==None,"\n")
+		# print("\nIn iniciaQuadTree(); quadtree==None :",quadTree==None,"\n")
+		return quadTree
 		
 	def mainMenu():
 		command = int(input("==Bem vindo ao teste de quadtrees!==\n\
@@ -48,7 +49,8 @@ if __name__ == "__main__":
 			print("Opção não existe!")
 			mainMenu()
 			
-	import plotly
+	# import plotly
+	import matplotlib.pyplot
 	quadTree = mainMenu()
 	if quadTree==None:
 		input("Não foi gerada quadtree\npressione \"enter\" para terminar")
