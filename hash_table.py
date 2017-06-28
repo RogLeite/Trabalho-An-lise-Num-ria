@@ -39,20 +39,21 @@ class HashTable():
 		sublen = idlen-keylen
 		return (id[sublen::]==(key))
 
-	def insert(self,elems, getid):
-		for elem in elems:
-			keys = self.table.keys()
-			id = getid(elem)
-			for key in keys:
-				if self.criteria(key, id):
-					index = self.findPlace(self.table[key], id)
-					self.table[key].insert(index,elem)
+	def insert(self,elem, getid):
+		# print("getid(): ",getid)
+		# print("getid(elem): ",getid(elem))
+		keys = self.table.keys()
+		id = getid(elem)
+		for key in keys:
+			if self.criteria(key, id):
+				index = self.findPlace(self.table[key], id, getid)
+				self.table[key].insert(index,elem)
 	#Returns index starting in 0
-	def findPlace(self,list, id):
-		if not list:
+	def findPlace(self,list, id, getid):
+		if not list or list==[] :
 			return 0
 		for i in range(len(list)):
-			if len(list[i]) < len(id):
+			if len(getid(list[i])) < len(id):
 				return i
 		return len(list)
 		

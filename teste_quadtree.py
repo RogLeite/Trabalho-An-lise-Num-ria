@@ -1,4 +1,3 @@
-import RectSpace as 
 import hash_table as ht
 class Node():
 	ROOT = 0
@@ -26,7 +25,7 @@ class Node():
 			self.type = Node.LEAF
 		else:
 			self.type = Node.BRANCH
-		print(mor_code)
+		print(self.mor_code)
 	#_______________________________________________________
 	# Recursively subdivides a rectangle. Division occurs 
 	# ONLY if the rectangle spans a "feature of interest".
@@ -72,7 +71,7 @@ class QuadTree():
 	#_______________________________________________________
 	def __init__(self, rootnode, minrect):
 		Node.minsize = minrect
-		hash_table = hs.HashTable()
+		self.hash_table = ht.HashTable()
 		rootnode.subdivide() # constructs the network of nodes
 		self.prune(rootnode)
 		self.traverse(rootnode)
@@ -111,10 +110,10 @@ class QuadTree():
 	def pointToLeaf(self,point):
 		x,y = point.getCoord()
 		x0,y0,x1,y1 = self.rect
-		assert(x>=0 and x<=x1 and y>=y0 and y<=y1,"Given point not in this rect")
+		assert x>=0 and x<=x1 and y>=y0 and y<=y1,"Given point not in this rect"
 		hash_code = (y%2,x%2)
-		xt = hs.HashTable.factorby2(x)
-		yt = hs.HashTable.factorby2(y)
+		xt = ht.HashTable.factorby2(x)
+		yt = ht.HashTable.factorby2(y)
 		dif = len(xt)-len(yt)
 		id = ()
 		if dif<0:
@@ -123,14 +122,14 @@ class QuadTree():
 		elif dif>0:
 			for i in range(dif):
 				yt = (0,)+yt
-		assert(len(xt)-len(yt)==0,"=========FALT=========\nin QuadTree.pointToLeaf()\n\t, len(xt)-len(yt) != 0")
+		assert len(xt)-len(yt)==0,"=========FALT=========\nin QuadTree.pointToLeaf()\n\t, len(xt)-len(yt) != 0"
 		
 		for i in range(len(xt)):
 			xti = xt[i]
 			yti = yt[i]
 			id = di+(yti,xti)
 		node = self.hash_table.findLeaf(hash_code,id)
-		assert(node==None,"Could not find suitable node for given point")
+		assert node==None,"Could not find suitable node for given point"
 		return node
 #===========================================================
 	
